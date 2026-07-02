@@ -1,0 +1,21 @@
+{
+    "listResponse": {
+        "quantidade": "#number",
+        "usuarios": "#[] ##userObject"
+    },
+
+    "userObject": {
+        "nome": "#string",
+        "email": "#string",
+        "password": "#string",
+        "administrador": "#string",
+        "_id": "#string"
+    },
+    "createSuccess":{
+        "message": "#string",
+        "_id": "#string"
+    },
+    "badRequest":{
+        "message": "#string"
+    }
+}
