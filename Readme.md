@@ -11,11 +11,12 @@ La suite valida escenarios mediante flujos felices (`@happy-path`), negativos (`
 Para poder clonar, compilar y ejecutar este proyecto desde cero en tu máquina local, necesitas instalar y configurar las siguientes herramientas esenciales de Backend:
 
 ### 1. Instalar Java Development Kit (JDK)
-Karate requiere **Java 11 o superior** para ejecutarse de forma nativa.
+Karate requiere **Java 17 o superior** para ejecutarse de forma nativa.
 * **Verificación:** Abre tu terminal (PowerShell o CMD) y comprueba que esté bien instalado con:
   ```
   java -version
-
+  ```
+  
 * **Configuración Clave:** Asegúrate de tener la variable de entorno `JAVA_HOME` apuntando a la ruta de instalación de tu JDK.
 
 ### 2. Instalar Apache Maven
@@ -101,7 +102,7 @@ Se ha evitado la repetición innecesaria del comando `Given path 'usuarios'` en 
 
 ### 3. Tolerancia a Fallos y Red Estable
 
-Debido a la naturaleza de la API de pruebas pública, se configuraron tiempos de espera optimizados de **15 segundos** (`connectTimeout` y `readTimeout` a 15000ms) en el archivo `karate-config.js`. Esto previene fallas falsas por latencia de red (`SocketTimeoutException`) y le brinda robustez a los pipelines de CI/CD.
+Debido a la naturaleza de la API de pruebas pública, se configuraron tiempos de espera optimizados de **5 segundos** (`connectTimeout` y `readTimeout` a 15000ms) en el archivo `karate-config.js`. Esto previene fallas falsas por latencia de red (`SocketTimeoutException`) y le brinda robustez a los pipelines de CI/CD.
 
 ### 4. Modularidad mediante Inyección de Precondiciones (`helpers.feature`)
 
@@ -155,6 +156,7 @@ El framework soporta conmutación dinámica de URLs base mediante propiedades de
 ```
 mvn test "-Dkarate.env=cert"
 ```
+**Nota:** el mecanismo de switching está implementado y funcional (`karate.env` cambia correctamente), pero actualmente los ambientes `dev`, `cert` y `qa` apuntan todos a la misma URL (`https://serverest.dev`), ya que es la única instancia pública disponible de la API. La estructura queda lista para el día en que existan URLs reales por ambiente.
 
 ### D. Ejecución de un archivo de prueba específico
 
